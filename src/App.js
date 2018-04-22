@@ -40,34 +40,6 @@ const carouselSlidesData = [
   }
 ];
 
-class CarouselLeftArrow extends Component {
-  render() {
-    return (
-      <a
-        href="#"
-        className="carousel__arrow carousel__arrow--left"
-        onClick={this.props.onClick}
-      >
-        <i >derecha</i>
-      </a>
-    );
-  }
-}
-
-class CarouselRightArrow extends Component {
-  render() {
-    return (
-      <a
-        href="#"
-        className="carousel__arrow carousel__arrow--right"
-        onClick={this.props.onClick}
-      >
-        <i >izquierda</i>
-      </a>
-    );
-  }
-}
-
 class CarouselIndicator extends Component {
   render() {
     return (
@@ -116,8 +88,6 @@ class Carousel extends Component {
     super(props);
 
     this.goToSlide = this.goToSlide.bind(this);
-    this.goToPrevSlide = this.goToPrevSlide.bind(this);
-    this.goToNextSlide = this.goToNextSlide.bind(this);
 
     this.state = {
       activeIndex: 0
@@ -130,47 +100,9 @@ class Carousel extends Component {
     });
   }
 
-  goToPrevSlide(e) {
-    e.preventDefault();
-
-    let index = this.state.activeIndex;
-    let { slides } = this.props;
-    let slidesLength = slides.length;
-
-    if (index < 1) {
-      index = slidesLength;
-    }
-
-    --index;
-
-    this.setState({
-      activeIndex: index
-    });
-  }
-
-  goToNextSlide(e) {
-    e.preventDefault();
-
-    let index = this.state.activeIndex;
-    let { slides } = this.props;
-    let slidesLength = slides.length - 1;
-
-    if (index === slidesLength) {
-      index = -1;
-    }
-
-    ++index;
-
-    this.setState({
-      activeIndex: index
-    });
-  }
-
   render() {
     return (
       <div className="carousel">
-        <CarouselLeftArrow onClick={e => this.goToPrevSlide(e)} />
-
         <ul className="carousel__slides">
           {this.props.slides.map((slide, index) =>
             <CarouselSlide
@@ -181,8 +113,6 @@ class Carousel extends Component {
             />
           )}
         </ul>
-
-        <CarouselRightArrow onClick={e => this.goToNextSlide(e)} />
 
         <ul className="carousel__indicators">
           {this.props.slides.map((slide, index) =>

@@ -21,7 +21,7 @@ ul {
   margin-right: auto;
   margin-left: auto;
   display: none;
-  width: 80%;
+  max-width: 900px;
   list-style-type: none;
   text-align: center;
 }
